@@ -36,13 +36,13 @@ export const CategorySection = ({
 
   const getCategoryColor = (colorName: string) => {
     const colorMap: Record<string, string> = {
-      'income': 'bg-income/20 text-income border-income/30',
-      'expense-primary': 'bg-expense-primary/20 text-expense-primary border-expense-primary/30',
-      'expense-secondary': 'bg-expense-secondary/20 text-expense-secondary border-expense-secondary/30',
-      'expense-tertiary': 'bg-expense-tertiary/20 text-expense-tertiary border-expense-tertiary/30',
-      'expense-quaternary': 'bg-expense-quaternary/20 text-expense-quaternary border-expense-quaternary/30',
+      'income': 'bg-green-100 text-green-700 border-green-300',
+      'expense-primary': 'bg-red-100 text-red-700 border-red-300',
+      'expense-secondary': 'bg-purple-100 text-purple-700 border-purple-300',
+      'expense-tertiary': 'bg-yellow-100 text-yellow-700 border-yellow-300',
+      'expense-quaternary': 'bg-blue-100 text-blue-700 border-blue-300',
     };
-    return colorMap[colorName] || 'bg-muted text-muted-foreground border-border';
+    return colorMap[colorName] || 'bg-gray-100 text-gray-700 border-gray-300';
   };
 
   return (
@@ -50,7 +50,7 @@ export const CategorySection = ({
       {/* Section Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-2 hover:bg-muted/50 rounded-lg transition-colors mb-2"
+        className="w-full flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors mb-2"
       >
         <h3 className="font-semibold text-sm text-foreground">{title}</h3>
         {isExpanded ? (
@@ -66,8 +66,8 @@ export const CategorySection = ({
           {categories.map((category) => (
             <div
               key={category.id}
-              className={`category-item group ${
-                selectedCategory === category.id ? 'bg-muted' : ''
+              className={`flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all duration-200 cursor-pointer group ${
+                selectedCategory === category.id ? 'bg-gray-100' : ''
               } ${hiddenCategories.has(category.id) ? 'opacity-50' : ''}`}
               onClick={() => 
                 onCategorySelect(selectedCategory === category.id ? null : category.id)
@@ -84,7 +84,7 @@ export const CategorySection = ({
               
               <div className="flex items-center space-x-2">
                 <span className={`text-sm font-semibold ${
-                  category.amount >= 0 ? 'text-income' : 'text-expense-primary'
+                  category.amount >= 0 ? 'text-green-600' : 'text-red-600'
                 }`}>
                   ${Math.abs(category.amount).toLocaleString()}
                 </span>
@@ -93,7 +93,7 @@ export const CategorySection = ({
                     e.stopPropagation();
                     toggleCategoryVisibility(category.id);
                   }}
-                  className="p-1 hover:bg-muted/70 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="p-1 hover:bg-gray-100 rounded opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   {hiddenCategories.has(category.id) ? (
                     <EyeOff className="w-3 h-3 text-muted-foreground" />

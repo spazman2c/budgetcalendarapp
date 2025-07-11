@@ -29,7 +29,7 @@ export const CalendarGrid = ({
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className="budget-card p-4 h-full">
+    <div className="bg-card border border-border rounded-lg p-4 h-full shadow-md">
       {/* Week Headers */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {weekDays.map((day) => (
@@ -51,7 +51,9 @@ export const CalendarGrid = ({
           return (
             <div
               key={day.toISOString()}
-              className={`calendar-day ${isDayToday ? 'today' : ''} ${
+              className={`min-h-[120px] p-2 border border-border/50 hover:border-border transition-all duration-200 hover:bg-card/50 cursor-pointer ${
+                isDayToday ? 'bg-primary/5 border-primary/20' : ''
+              } ${
                 isSelected ? 'ring-2 ring-primary' : ''
               } ${!isCurrentMonth ? 'opacity-30' : ''}`}
               onClick={() => onDateSelect(isSelected ? null : day)}
@@ -65,7 +67,7 @@ export const CalendarGrid = ({
                 </span>
                 {dayTotal !== 0 && (
                   <span className={`text-xs font-bold ${
-                    dayTotal > 0 ? 'text-income' : 'text-expense-primary'
+                    dayTotal > 0 ? 'text-green-600' : 'text-red-600'
                   }`}>
                     ${Math.abs(dayTotal).toLocaleString()}
                   </span>
@@ -77,8 +79,10 @@ export const CalendarGrid = ({
                 {transactions.slice(0, 3).map((transaction) => (
                   <div
                     key={transaction.id}
-                    className={`transaction-pill ${
-                      transaction.type === 'income' ? 'income-pill' : 'expense-pill'
+                    className={`px-3 py-1 rounded-full text-xs font-medium border transition-all duration-200 hover:scale-105 ${
+                      transaction.type === 'income' 
+                        ? 'bg-green-50 text-green-700 border-green-200' 
+                        : 'bg-red-50 text-red-700 border-red-200'
                     }`}
                   >
                     <div className="flex items-center justify-between">

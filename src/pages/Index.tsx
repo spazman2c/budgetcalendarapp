@@ -9,12 +9,12 @@ const Index = () => {
   const [showTransactionForm, setShowTransactionForm] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-background">
       <Header />
       
       <div className="flex h-[calc(100vh-4rem)]">
         {/* Sidebar */}
-        <div className="w-80 border-r border-border bg-card/50 backdrop-blur-sm">
+        <div className="w-80 border-r border-border bg-card">
           <Sidebar />
         </div>
 
@@ -28,7 +28,7 @@ const Index = () => {
 
         {/* Transaction Form */}
         {showTransactionForm && (
-          <div className="w-80 border-l border-border bg-card/50 backdrop-blur-sm">
+          <div className="w-80 border-l border-border bg-card">
             <TransactionForm onClose={() => setShowTransactionForm(false)} />
           </div>
         )}
@@ -37,7 +37,7 @@ const Index = () => {
       {/* Floating Add Button */}
       <button
         onClick={() => setShowTransactionForm(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-primary text-primary-foreground rounded-full shadow-custom-xl hover:shadow-custom-lg transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

@@ -40,7 +40,7 @@ export const TransactionForm = ({ onClose }: TransactionFormProps) => {
   const isIncome = selectedCategory?.type === "income";
 
   return (
-    <div className="h-full p-6 fade-in">
+    <div className="h-full p-6 animate-in slide-in-from-right duration-300">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -144,8 +144,8 @@ export const TransactionForm = ({ onClose }: TransactionFormProps) => {
           type="submit"
           className={`w-full h-12 text-base font-medium ${
             isIncome 
-              ? 'bg-gradient-success hover:bg-success/90 text-success-foreground' 
-              : 'bg-gradient-primary hover:bg-primary/90 text-primary-foreground'
+              ? 'bg-green-600 hover:bg-green-700 text-white' 
+              : 'bg-blue-600 hover:bg-blue-700 text-white'
           }`}
         >
           Add {isIncome ? 'Income' : 'Expense'}
