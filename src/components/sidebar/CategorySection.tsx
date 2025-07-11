@@ -66,7 +66,7 @@ export const CategorySection = ({
           {categories.map((category) => (
             <div
               key={category.id}
-              className={`category-item ${
+              className={`category-item group ${
                 selectedCategory === category.id ? 'bg-muted' : ''
               } ${hiddenCategories.has(category.id) ? 'opacity-50' : ''}`}
               onClick={() => 
