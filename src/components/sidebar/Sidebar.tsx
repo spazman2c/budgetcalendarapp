@@ -1,84 +1,82 @@
 import { useState } from "react";
 import { CategorySection } from "./CategorySection";
-import { TrendingUp, TrendingDown, DollarSign } from "lucide-react";
-
-const mockIncomeCategories = [
-  { id: "1", name: "Salary", amount: 8339.69, color: "income" },
-  { id: "2", name: "Freelance", amount: 1200.00, color: "income" },
-  { id: "3", name: "Investments", amount: 450.00, color: "income" },
-];
-
-const mockExpenseCategories = [
-  { id: "4", name: "Housing", amount: -2814.62, color: "expense-primary" },
-  { id: "5", name: "Transportation", amount: -450.00, color: "expense-secondary" },
-  { id: "6", name: "Food", amount: -680.00, color: "expense-tertiary" },
-  { id: "7", name: "Utilities", amount: -320.00, color: "expense-quaternary" },
-  { id: "8", name: "Entertainment", amount: -240.00, color: "expense-primary" },
-];
+import { AnalyticsSection } from "./AnalyticsSection";
+import { BudgetSection } from "./BudgetSection";
+import { AccountSelector } from "../accounts/AccountSelector";
+import { GoalsSection } from "../goals/GoalsSection";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BarChart3, PiggyBank, Settings, Wallet, Target } from "lucide-react";
+import { useBudget } from "@/contexts/BudgetContext";
 
 export const Sidebar = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("accounts");
+  const { state, getMonthData } = useBudget();
   
-  const totalIncome = mockIncomeCategories.reduce((sum, cat) => sum + cat.amount, 0);
-  const totalExpenses = mockExpenseCategories.reduce((sum, cat) => sum + cat.amount, 0);
-  const netAmount = totalIncome + totalExpenses;
+  const currentMonthData = getMonthData(new Date().getFullYear(), new Date().getMonth());
 
   return (
-    <div className="h-full p-6 overflow-y-auto">
-      {/* Summary Cards */}
-      <div className="space-y-3 mb-6">
-        <div className="bg-card border border-border rounded-lg p-4 shadow-md">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-medium text-muted-foreground">Income</span>
-            </div>
-            <span className="text-lg font-bold text-green-600">
-              ${totalIncome.toLocaleString()}
-            </span>
-          </div>
+    <div className="h-full p-6 slide-up">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
+        <TabsList className="grid w-full grid-cols-5 mb-8 bg-muted/50 rounded-2xl p-1">
+          <TabsTrigger 
+            value="accounts" 
+            className="flex items-center space-x-2 rounded-xl transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <Wallet className="w-4 h-4" />
+            <span className="hidden sm:inline text-sm font-medium">Accounts</span>
+          </TabsTrigger>
+          <TabsTrigger 
+            value="analytics" 
+            className="flex items-center space-x-2 rounded-xl transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <BarChart3 className="w-4 h-4" />
+            <span className="hidden sm:inline text-sm font-medium">Analytics</span>
+          </TabsTrigger>
+          <TabsTrigger 
+            value="budgets" 
+            className="flex items-center space-x-2 rounded-xl transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <PiggyBank className="w-4 h-4" />
+            <span className="hidden sm:inline text-sm font-medium">Budgets</span>
+          </TabsTrigger>
+          <TabsTrigger 
+            value="goals" 
+            className="flex items-center space-x-2 rounded-xl transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <Target className="w-4 h-4" />
+            <span className="hidden sm:inline text-sm font-medium">Goals</span>
+          </TabsTrigger>
+          <TabsTrigger 
+            value="categories" 
+            className="flex items-center space-x-2 rounded-xl transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <Settings className="w-4 h-4" />
+            <span className="hidden sm:inline text-sm font-medium">Categories</span>
+          </TabsTrigger>
+        </TabsList>
+
+        <div className="flex-1 overflow-y-auto">
+          <TabsContent value="accounts" className="h-full scale-in">
+            <AccountSelector />
+          </TabsContent>
+          
+          <TabsContent value="analytics" className="h-full scale-in">
+            <AnalyticsSection />
+          </TabsContent>
+          
+          <TabsContent value="budgets" className="h-full scale-in">
+            <BudgetSection />
+          </TabsContent>
+          
+          <TabsContent value="goals" className="h-full scale-in">
+            <GoalsSection />
+          </TabsContent>
+          
+          <TabsContent value="categories" className="h-full scale-in">
+            <CategorySection />
+          </TabsContent>
         </div>
-
-        <div className="bg-card border border-border rounded-lg p-4 shadow-md">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <TrendingDown className="w-5 h-5 text-red-600" />
-              <span className="text-sm font-medium text-muted-foreground">Expenses</span>
-            </div>
-            <span className="text-lg font-bold text-red-600">
-              ${Math.abs(totalExpenses).toLocaleString()}
-            </span>
-          </div>
-        </div>
-
-        <div className="bg-card border border-border rounded-lg p-4 shadow-md">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <DollarSign className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">Net</span>
-            </div>
-            <span className={`text-lg font-bold ${netAmount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-              ${Math.abs(netAmount).toLocaleString()}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Income Categories */}
-      <CategorySection
-        title="Income"
-        categories={mockIncomeCategories}
-        selectedCategory={selectedCategory}
-        onCategorySelect={setSelectedCategory}
-      />
-
-      {/* Expense Categories */}
-      <CategorySection
-        title="Expenses"
-        categories={mockExpenseCategories}
-        selectedCategory={selectedCategory}
-        onCategorySelect={setSelectedCategory}
-      />
+      </Tabs>
     </div>
   );
 };

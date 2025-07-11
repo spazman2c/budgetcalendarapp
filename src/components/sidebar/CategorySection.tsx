@@ -1,28 +1,24 @@
-import { ChevronDown, ChevronRight, Eye, EyeOff } from "lucide-react";
+import { ChevronDown, ChevronRight, Eye, EyeOff, Plus } from "lucide-react";
 import { useState } from "react";
+import { useBudget } from "@/contexts/BudgetContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
-interface Category {
-  id: string;
-  name: string;
-  amount: number;
-  color: string;
-}
-
-interface CategorySectionProps {
-  title: string;
-  categories: Category[];
-  selectedCategory: string | null;
-  onCategorySelect: (categoryId: string | null) => void;
-}
-
-export const CategorySection = ({ 
-  title, 
-  categories, 
-  selectedCategory, 
-  onCategorySelect 
-}: CategorySectionProps) => {
+export const CategorySection = () => {
+  const { state, addCategory, deleteCategory } = useBudget();
   const [isExpanded, setIsExpanded] = useState(true);
   const [hiddenCategories, setHiddenCategories] = useState<Set<string>>(new Set());
+  const [showAddCategory, setShowAddCategory] = useState(false);
+  const [newCategory, setNewCategory] = useState({
+    name: "",
+    type: "expense" as "income" | "expense",
+    icon: "💰",
+    color: "#6b7280",
+  });
 
   const toggleCategoryVisibility = (categoryId: string) => {
     const newHidden = new Set(hiddenCategories);
@@ -34,78 +30,196 @@ export const CategorySection = ({
     setHiddenCategories(newHidden);
   };
 
-  const getCategoryColor = (colorName: string) => {
-    const colorMap: Record<string, string> = {
-      'income': 'bg-green-100 text-green-700 border-green-300',
-      'expense-primary': 'bg-red-100 text-red-700 border-red-300',
-      'expense-secondary': 'bg-purple-100 text-purple-700 border-purple-300',
-      'expense-tertiary': 'bg-yellow-100 text-yellow-700 border-yellow-300',
-      'expense-quaternary': 'bg-blue-100 text-blue-700 border-blue-300',
-    };
-    return colorMap[colorName] || 'bg-gray-100 text-gray-700 border-gray-300';
+  const handleAddCategory = () => {
+    if (!newCategory.name.trim()) {
+      toast.error("Please enter a category name");
+      return;
+    }
+
+    try {
+      addCategory(newCategory);
+      setNewCategory({ name: "", type: "expense", icon: "💰", color: "#6b7280" });
+      setShowAddCategory(false);
+      toast.success("Category added successfully!");
+    } catch (error) {
+      toast.error("Failed to add category");
+    }
   };
 
-  return (
-    <div className="mb-6">
-      {/* Section Header */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg transition-colors mb-2"
-      >
-        <h3 className="font-semibold text-sm text-foreground">{title}</h3>
-        {isExpanded ? (
-          <ChevronDown className="w-4 h-4 text-muted-foreground" />
-        ) : (
-          <ChevronRight className="w-4 h-4 text-muted-foreground" />
-        )}
-      </button>
+  const handleDeleteCategory = (categoryId: string) => {
+    if (state.transactions.some(t => t.category === categoryId)) {
+      toast.error("Cannot delete category with existing transactions");
+      return;
+    }
 
-      {/* Categories */}
-      {isExpanded && (
-        <div className="space-y-1">
-          {categories.map((category) => (
+    try {
+      deleteCategory(categoryId);
+      toast.success("Category deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete category");
+    }
+  };
+
+  // Calculate category totals
+  const categoryTotals = state.categories.map(category => {
+    const categoryTransactions = state.transactions.filter(t => t.category === category.id);
+    const total = categoryTransactions.reduce((sum, t) => sum + t.amount, 0);
+    return {
+      ...category,
+      total: Math.abs(total),
+      transactionCount: categoryTransactions.length,
+    };
+  });
+
+  const incomeCategories = categoryTotals.filter(cat => cat.type === 'income');
+  const expenseCategories = categoryTotals.filter(cat => cat.type === 'expense');
+
+  return (
+    <div className="space-y-6 fade-in">
+      {/* Apple-style Add Category Button */}
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-semibold text-foreground tracking-tight">Categories</h3>
+        <Dialog open={showAddCategory} onOpenChange={setShowAddCategory}>
+          <DialogTrigger asChild>
+            <Button className="apple-button-secondary flex items-center space-x-2">
+              <Plus className="w-4 h-4" />
+              <span>Add Category</span>
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="apple-card">
+            <DialogHeader>
+              <DialogTitle className="text-xl font-semibold">Add New Category</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <Label htmlFor="name" className="text-base font-medium">Name</Label>
+                <Input
+                  id="name"
+                  placeholder="Category name"
+                  value={newCategory.name}
+                  onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
+                  className="apple-input"
+                />
+              </div>
+
+              <div className="space-y-3">
+                <Label htmlFor="type" className="text-base font-medium">Type</Label>
+                <Select
+                  value={newCategory.type}
+                  onValueChange={(value: "income" | "expense") => 
+                    setNewCategory({ ...newCategory, type: value })
+                  }
+                >
+                  <SelectTrigger className="apple-input">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="income">Income</SelectItem>
+                    <SelectItem value="expense">Expense</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-3">
+                <Label htmlFor="icon" className="text-base font-medium">Icon</Label>
+                <Input
+                  id="icon"
+                  placeholder="💰"
+                  value={newCategory.icon}
+                  onChange={(e) => setNewCategory({ ...newCategory, icon: e.target.value })}
+                  className="apple-input"
+                />
+              </div>
+
+              <Button onClick={handleAddCategory} className="apple-button w-full">
+                Add Category
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      {/* Apple-style Income Categories */}
+      <div className="space-y-4">
+        <h4 className="text-base font-semibold text-muted-foreground">Income Categories</h4>
+        <div className="space-y-3">
+          {incomeCategories.map((category) => (
             <div
               key={category.id}
-              className={`flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-all duration-200 cursor-pointer group ${
-                selectedCategory === category.id ? 'bg-gray-100' : ''
-              } ${hiddenCategories.has(category.id) ? 'opacity-50' : ''}`}
-              onClick={() => 
-                onCategorySelect(selectedCategory === category.id ? null : category.id)
-              }
+              className="apple-card p-4 transition-all duration-300 hover:scale-105"
             >
-              <div className="flex items-center space-x-3 min-w-0 flex-1">
-                <div 
-                  className={`w-3 h-3 rounded-full border ${getCategoryColor(category.color)}`}
-                />
-                <span className="text-sm font-medium text-foreground truncate">
-                  {category.name}
-                </span>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <span className={`text-sm font-semibold ${
-                  category.amount >= 0 ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  ${Math.abs(category.amount).toLocaleString()}
-                </span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleCategoryVisibility(category.id);
-                  }}
-                  className="p-1 hover:bg-gray-100 rounded opacity-0 group-hover:opacity-100 transition-opacity"
-                >
-                  {hiddenCategories.has(category.id) ? (
-                    <EyeOff className="w-3 h-3 text-muted-foreground" />
-                  ) : (
-                    <Eye className="w-3 h-3 text-muted-foreground" />
-                  )}
-                </button>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-success/10 rounded-2xl flex items-center justify-center">
+                    <span className="text-xl">{category.icon}</span>
+                  </div>
+                  <div>
+                    <p className="text-base font-semibold text-foreground">{category.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {category.transactionCount} transaction{category.transactionCount !== 1 ? 's' : ''}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg font-bold text-success">
+                    ${category.total.toLocaleString()}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleDeleteCategory(category.id)}
+                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 rounded-2xl"
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
         </div>
-      )}
+      </div>
+
+      {/* Apple-style Expense Categories */}
+      <div className="space-y-4">
+        <h4 className="text-base font-semibold text-muted-foreground">Expense Categories</h4>
+        <div className="space-y-3">
+          {expenseCategories.map((category) => (
+            <div
+              key={category.id}
+              className="apple-card p-4 transition-all duration-300 hover:scale-105"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-destructive/10 rounded-2xl flex items-center justify-center">
+                    <span className="text-xl">{category.icon}</span>
+                  </div>
+                  <div>
+                    <p className="text-base font-semibold text-foreground">{category.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {category.transactionCount} transaction{category.transactionCount !== 1 ? 's' : ''}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg font-bold text-destructive">
+                    ${category.total.toLocaleString()}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleDeleteCategory(category.id)}
+                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 rounded-2xl"
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

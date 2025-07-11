@@ -2,122 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern Financial App Design System */
+/* Apple Design System */
 
 @layer base {
   :root {
-    /* Core Colors */
-    --background: 248 250 252;
-    --foreground: 15 23 42;
-
+    /* Apple's Color Palette */
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    
     --card: 255 255 255;
-    --card-foreground: 15 23 42;
-
+    --card-foreground: 0 0 0;
+    
     --popover: 255 255 255;
-    --popover-foreground: 15 23 42;
-
-    /* Brand Colors */
-    --primary: 219 39% 11%;
-    --primary-foreground: 248 250 252;
-
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 15 23 42;
-
-    --muted: 240 5% 96%;
-    --muted-foreground: 100 116 139;
-
-    --accent: 240 5% 96%;
-    --accent-foreground: 15 23 42;
-
-    /* Status Colors */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 248 250 252;
-
-    --success: 142 69% 58%;
-    --success-foreground: 248 250 252;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 15 23 42;
-
-    --info: 199 89% 48%;
-    --info-foreground: 248 250 252;
-
-    /* Financial Categories */
-    --income: 142 69% 58%;
-    --income-light: 142 69% 95%;
-    --expense-primary: 0 84% 60%;
-    --expense-secondary: 262 83% 58%;
-    --expense-tertiary: 38 92% 50%;
-    --expense-quaternary: 199 89% 48%;
-
-    /* Interface */
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 219 39% 11%;
-
-    --radius: 0.75rem;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(219 39% 11%), hsl(219 39% 15%));
-    --gradient-success: linear-gradient(135deg, hsl(142 69% 58%), hsl(142 69% 48%));
-    --gradient-card: linear-gradient(145deg, hsl(255 255 255 / 0.1), hsl(255 255 255 / 0.05));
-    --gradient-subtle: linear-gradient(180deg, hsl(248 250 252), hsl(241 245 249));
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(15 23 42 / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(15 23 42 / 0.1), 0 2px 4px -2px hsl(15 23 42 / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(15 23 42 / 0.1), 0 4px 6px -4px hsl(15 23 42 / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(15 23 42 / 0.1), 0 8px 10px -6px hsl(15 23 42 / 0.1);
-
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --popover-foreground: 0 0 0;
+    
+    /* Apple's Primary Colors */
+    --primary: 0 122 255;
+    --primary-foreground: 255 255 255;
+    
+    --secondary: 248 248 248;
+    --secondary-foreground: 0 0 0;
+    
+    --muted: 248 248 248;
+    --muted-foreground: 142 142 147;
+    
+    --accent: 248 248 248;
+    --accent-foreground: 0 0 0;
+    
+    /* Apple's Status Colors */
+    --destructive: 255 59 48;
+    --destructive-foreground: 255 255 255;
+    
+    --success: 52 199 89;
+    --success-foreground: 255 255 255;
+    
+    --warning: 255 149 0;
+    --warning-foreground: 0 0 0;
+    
+    --info: 0 122 255;
+    --info-foreground: 255 255 255;
+    
+    /* Financial Categories with Apple's Color Palette */
+    --income: 52 199 89;
+    --income-light: 240 248 244;
+    --expense-primary: 255 59 48;
+    --expense-secondary: 175 82 222;
+    --expense-tertiary: 255 149 0;
+    --expense-quaternary: 0 122 255;
+    
+    /* Apple's Interface Colors */
+    --border: 229 229 234;
+    --input: 248 248 248;
+    --ring: 0 122 255;
+    
+    /* Apple's Border Radius */
+    --radius: 12px;
+    
+    /* Apple's Gradients */
+    --gradient-primary: linear-gradient(135deg, #007AFF, #5856D6);
+    --gradient-success: linear-gradient(135deg, #34C759, #30D158);
+    --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    --gradient-subtle: linear-gradient(180deg, #FFFFFF, #F8F8F8);
+    
+    /* Apple's Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.1);
+    
+    /* Apple's Smooth Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-
+  
   .dark {
-    --background: 15 23 42;
-    --foreground: 248 250 252;
-    --card: 30 41 59;
-    --card-foreground: 248 250 252;
-    --popover: 30 41 59;
-    --popover-foreground: 248 250 252;
-    --primary: 248 250 252;
-    --primary-foreground: 15 23 42;
-    --secondary: 30 41 59;
-    --secondary-foreground: 248 250 252;
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184;
-    --accent: 30 41 59;
-    --accent-foreground: 248 250 252;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 248 250 252;
-    --border: 30 41 59;
-    --input: 30 41 59;
-    --ring: 248 250 252;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --card: 28 28 30;
+    --card-foreground: 255 255 255;
+    --popover: 28 28 30;
+    --popover-foreground: 255 255 255;
+    --primary: 0 122 255;
+    --primary-foreground: 255 255 255;
+    --secondary: 28 28 30;
+    --secondary-foreground: 255 255 255;
+    --muted: 28 28 30;
+    --muted-foreground: 142 142 147;
+    --accent: 28 28 30;
+    --accent-foreground: 255 255 255;
+    --border: 44 44 46;
+    --input: 28 28 30;
+    --ring: 0 122 255;
   }
 }
 
@@ -125,53 +101,149 @@
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-gradient-subtle text-foreground font-medium;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Apple's Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Apple's Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 @layer components {
-  .budget-card {
-    @apply bg-card/80 backdrop-blur-sm border border-border rounded-lg shadow-custom-md hover:shadow-custom-lg transition-all duration-300;
+  /* Apple's Card Design */
+  .apple-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
-
+  
+  /* Apple's Button Design */
+  .apple-button {
+    @apply bg-primary text-primary-foreground rounded-2xl px-6 py-3 font-medium transition-all duration-300 hover:scale-105 active:scale-95;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+  }
+  
+  .apple-button-secondary {
+    @apply bg-secondary text-secondary-foreground rounded-2xl px-6 py-3 font-medium transition-all duration-300 hover:bg-accent active:scale-95;
+  }
+  
+  /* Apple's Transaction Pills */
   .transaction-pill {
-    @apply px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm border transition-all duration-200 hover:scale-105;
+    @apply px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
-
+  
   .income-pill {
-    @apply bg-income/10 text-income border-income/20;
+    @apply bg-success/10 text-success border-success/20;
   }
-
+  
   .expense-pill {
-    @apply bg-expense-primary/10 text-expense-primary border-expense-primary/20;
+    @apply bg-destructive/10 text-destructive border-destructive/20;
   }
-
+  
+  /* Apple's Category Items */
   .category-item {
-    @apply flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-all duration-200 cursor-pointer;
+    @apply flex items-center justify-between p-4 rounded-2xl hover:bg-muted/50 transition-all duration-300 cursor-pointer;
   }
-
+  
+  /* Apple's Calendar Day */
   .calendar-day {
-    @apply min-h-[120px] p-2 border border-border/50 hover:border-border transition-all duration-200 hover:bg-card/50;
+    @apply min-h-[120px] p-3 border border-border/30 rounded-2xl hover:border-border transition-all duration-300 hover:bg-card/50;
   }
-
+  
   .calendar-day.today {
     @apply bg-primary/5 border-primary/20;
   }
-
-  .fade-in {
-    animation: fadeIn 0.3s ease-out;
+  
+  /* Apple's Floating Action Button */
+  .apple-fab {
+    @apply fixed bottom-6 right-6 w-16 h-16 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center;
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
   }
-
+  
+  /* Apple's Sidebar Design */
+  .apple-sidebar {
+    @apply bg-secondary border-r border-border backdrop-blur-xl;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Apple's Form Inputs */
+  .apple-input {
+    @apply bg-input border border-border rounded-2xl px-4 py-3 transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary;
+  }
+  
+  /* Apple's Animations */
+  .fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .slide-up {
+    animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Apple's Glass Effect */
+  .apple-glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .apple-glass-dark {
+    background: rgba(28, 28, 30, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
