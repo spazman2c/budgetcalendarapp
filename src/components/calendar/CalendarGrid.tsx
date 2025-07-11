@@ -27,17 +27,17 @@ export const CalendarGrid = ({
   };
 
   return (
-    <div className="apple-card p-6 h-full scale-in">
-      {/* Apple-style Week Headers */}
+    <div className="glass-card p-6 h-full scale-in-glass">
+      {/* Glassmorphic Week Headers */}
       <div className="grid grid-cols-7 gap-2 mb-4">
         {weekDays.map((day) => (
-          <div key={day} className="p-4 text-center">
-            <span className="text-sm font-semibold text-muted-foreground tracking-wide">{day}</span>
+          <div key={day} className="p-3 text-center">
+            <span className="text-sm font-bold text-muted-foreground tracking-wide">{day}</span>
           </div>
         ))}
       </div>
 
-      {/* Apple-style Calendar Grid */}
+      {/* Glassmorphic Calendar Grid */}
       <div className="grid grid-cols-7 gap-2 h-[calc(100%-4rem)]">
         {calendarDays.map((day) => {
           const transactions = getTransactionsForDate(day);
@@ -49,16 +49,16 @@ export const CalendarGrid = ({
           return (
             <div
               key={day.toISOString()}
-              className={`calendar-day cursor-pointer transition-all duration-300 hover:scale-105 ${
+              className={`calendar-day cursor-pointer transition-all duration-500 hover:scale-105 ${
                 isDayToday ? 'today' : ''
               } ${
                 isSelected ? 'ring-2 ring-primary shadow-lg' : ''
               } ${!isCurrentMonth ? 'opacity-30' : ''}`}
               onClick={() => onDateSelect(isSelected ? null : day)}
             >
-              {/* Apple-style Day Number */}
+              {/* Glassmorphic Day Number */}
               <div className="flex items-center justify-between mb-3">
-                <span className={`text-lg font-semibold ${
+                <span className={`text-base font-bold ${
                   isDayToday ? 'text-primary' : 'text-foreground'
                 }`}>
                   {format(day, 'd')}
@@ -72,9 +72,9 @@ export const CalendarGrid = ({
                 )}
               </div>
 
-              {/* Apple-style Transactions */}
+              {/* Glassmorphic Transactions */}
               <div className="space-y-2">
-                {transactions.slice(0, 3).map((transaction) => {
+                {transactions.slice(0, 2).map((transaction) => {
                   const categoryInfo = getCategoryInfo(transaction.category);
                   return (
                     <div
@@ -87,12 +87,12 @@ export const CalendarGrid = ({
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <span className="text-xs">{categoryInfo?.icon || '💰'}</span>
-                          <span className="truncate text-xs max-w-[70px] font-medium">
+                          <span className="text-sm">{categoryInfo?.icon || '💰'}</span>
+                          <span className="truncate text-sm max-w-[60px] font-bold">
                             {categoryInfo?.name || 'Unknown'}
                           </span>
                         </div>
-                        <span className="text-xs font-bold ml-2">
+                        <span className="text-sm font-bold ml-2">
                           ${Math.abs(transaction.amount).toLocaleString()}
                         </span>
                       </div>
@@ -100,9 +100,9 @@ export const CalendarGrid = ({
                   );
                 })}
                 
-                {transactions.length > 3 && (
-                  <div className="text-xs text-muted-foreground text-center font-medium">
-                    +{transactions.length - 3} more
+                {transactions.length > 2 && (
+                  <div className="text-sm text-muted-foreground text-center font-bold">
+                    +{transactions.length - 2} more
                   </div>
                 )}
               </div>

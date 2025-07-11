@@ -27,14 +27,14 @@ export const CalendarHeader = ({ currentDate, onDateChange, monthData }: Calenda
   };
 
   return (
-    <div className="space-y-6 fade-in">
-      {/* Apple-style Header with navigation */}
+    <div className="space-y-6 fade-in-glass">
+      {/* Glassmorphic Header with navigation */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-4xl font-semibold text-foreground tracking-tight">
+          <h2 className="text-3xl font-bold text-foreground tracking-tight">
             {format(currentDate, "MMMM yyyy")}
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base">
             Financial overview for {format(currentDate, "MMMM")}
           </p>
         </div>
@@ -42,73 +42,73 @@ export const CalendarHeader = ({ currentDate, onDateChange, monthData }: Calenda
         <div className="flex items-center space-x-3">
           <button
             onClick={() => navigateMonth('prev')}
-            className="p-3 hover:bg-muted/50 rounded-2xl transition-all duration-300 hover:scale-105"
+            className="p-3 hover:bg-muted/50 rounded-2xl transition-all duration-500 hover:scale-110 neon-glow"
           >
             <ChevronLeft className="w-6 h-6 text-muted-foreground" />
           </button>
           
           <button
             onClick={() => onDateChange(new Date())}
-            className="apple-button-secondary"
+            className="neon-button-secondary text-base px-6 py-3"
           >
             Today
           </button>
           
           <button
             onClick={() => navigateMonth('next')}
-            className="p-3 hover:bg-muted/50 rounded-2xl transition-all duration-300 hover:scale-105"
+            className="p-3 hover:bg-muted/50 rounded-2xl transition-all duration-500 hover:scale-110 neon-glow"
           >
             <ChevronRight className="w-6 h-6 text-muted-foreground" />
           </button>
         </div>
       </div>
 
-      {/* Apple-style Financial Summary */}
+      {/* Glassmorphic Financial Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="apple-card p-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-success/10 rounded-2xl flex items-center justify-center">
+        <div className="glass-card p-6 float">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-success/30 rounded-2xl flex items-center justify-center neon-glow">
               <TrendingUp className="w-6 h-6 text-success" />
             </div>
             <div>
-              <span className="text-sm font-medium text-muted-foreground">Income</span>
-              <p className="text-3xl font-semibold text-success">
+              <span className="text-sm font-bold text-muted-foreground">Income</span>
+              <p className="text-2xl font-bold text-success">
                 {formatCurrency(monthData.totalIncome)}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="apple-card p-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-destructive/10 rounded-2xl flex items-center justify-center">
+        <div className="glass-card p-6 float-delayed">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-destructive/30 rounded-2xl flex items-center justify-center neon-glow">
               <TrendingDown className="w-6 h-6 text-destructive" />
             </div>
             <div>
-              <span className="text-sm font-medium text-muted-foreground">Expenses</span>
-              <p className="text-3xl font-semibold text-destructive">
+              <span className="text-sm font-bold text-muted-foreground">Expenses</span>
+              <p className="text-2xl font-bold text-destructive">
                 {formatCurrency(monthData.totalExpense)}
               </p>
             </div>
           </div>
         </div>
 
-        <div className={`apple-card p-6 ${
+        <div className={`glass-card p-6 float-slow ${
           monthData.netAmount >= 0 
-            ? 'border-primary/20' 
-            : 'border-warning/20'
+            ? 'border-primary/60' 
+            : 'border-warning/60'
         }`}>
-          <div className="flex items-center space-x-3">
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-              monthData.netAmount >= 0 ? 'bg-primary/10' : 'bg-warning/10'
+          <div className="flex items-center space-x-4">
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center neon-glow ${
+              monthData.netAmount >= 0 ? 'bg-primary/30' : 'bg-warning/30'
             }`}>
               <DollarSign className={`w-6 h-6 ${
                 monthData.netAmount >= 0 ? 'text-primary' : 'text-warning'
               }`} />
             </div>
             <div>
-              <span className="text-sm font-medium text-muted-foreground">Net</span>
-              <p className={`text-3xl font-semibold ${
+              <span className="text-sm font-bold text-muted-foreground">Net</span>
+              <p className={`text-2xl font-bold ${
                 monthData.netAmount >= 0 ? 'text-primary' : 'text-warning'
               }`}>
                 {formatCurrency(monthData.netAmount)}

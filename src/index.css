@@ -2,98 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Apple Design System */
+/* Futuristic Glassmorphic Design System */
 
 @layer base {
   :root {
-    /* Apple's Color Palette */
-    --background: 255 255 255;
-    --foreground: 0 0 0;
+    /* Dark Glassmorphic Color Palette */
+    --background: 8 8 12;
+    --foreground: 255 255 255;
     
-    --card: 255 255 255;
-    --card-foreground: 0 0 0;
+    --card: 16 16 24;
+    --card-foreground: 255 255 255;
     
-    --popover: 255 255 255;
-    --popover-foreground: 0 0 0;
+    --popover: 20 20 32;
+    --popover-foreground: 255 255 255;
     
-    /* Apple's Primary Colors */
-    --primary: 0 122 255;
-    --primary-foreground: 255 255 255;
+    /* Neon Accent Colors */
+    --primary: 0 255 255;
+    --primary-foreground: 8 8 12;
     
-    --secondary: 248 248 248;
-    --secondary-foreground: 0 0 0;
+    --secondary: 32 32 48;
+    --secondary-foreground: 255 255 255;
     
-    --muted: 248 248 248;
-    --muted-foreground: 142 142 147;
+    --muted: 24 24 36;
+    --muted-foreground: 156 163 175;
     
-    --accent: 248 248 248;
-    --accent-foreground: 0 0 0;
+    --accent: 138 43 226;
+    --accent-foreground: 255 255 255;
     
-    /* Apple's Status Colors */
-    --destructive: 255 59 48;
+    /* Status Colors with Neon Glow */
+    --destructive: 255 69 58;
     --destructive-foreground: 255 255 255;
     
     --success: 52 199 89;
     --success-foreground: 255 255 255;
     
     --warning: 255 149 0;
-    --warning-foreground: 0 0 0;
+    --warning-foreground: 255 255 255;
     
     --info: 0 122 255;
     --info-foreground: 255 255 255;
     
-    /* Financial Categories with Apple's Color Palette */
+    /* Financial Categories with Neon Accents */
     --income: 52 199 89;
-    --income-light: 240 248 244;
-    --expense-primary: 255 59 48;
-    --expense-secondary: 175 82 222;
+    --income-light: 52 199 89;
+    --expense-primary: 255 69 58;
+    --expense-secondary: 138 43 226;
     --expense-tertiary: 255 149 0;
     --expense-quaternary: 0 122 255;
     
-    /* Apple's Interface Colors */
-    --border: 229 229 234;
-    --input: 248 248 248;
-    --ring: 0 122 255;
+    /* Glassmorphic Interface Colors */
+    --border: 64 64 96;
+    --input: 24 24 36;
+    --ring: 0 255 255;
     
-    /* Apple's Border Radius */
-    --radius: 12px;
+    /* Enhanced Border Radius for Modern Look */
+    --radius: 16px;
     
-    /* Apple's Gradients */
-    --gradient-primary: linear-gradient(135deg, #007AFF, #5856D6);
-    --gradient-success: linear-gradient(135deg, #34C759, #30D158);
-    --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    --gradient-subtle: linear-gradient(180deg, #FFFFFF, #F8F8F8);
+    /* Futuristic Gradients */
+    --gradient-primary: linear-gradient(135deg, #00FFFF, #8A2BE2);
+    --gradient-success: linear-gradient(135deg, #34C759, #00FF88);
+    --gradient-card: linear-gradient(145deg, rgba(16, 16, 24, 0.8), rgba(32, 32, 48, 0.6));
+    --gradient-subtle: linear-gradient(180deg, #101018, #202030);
+    --gradient-neon: linear-gradient(45deg, #00FFFF, #FF00FF, #00FF00);
     
-    /* Apple's Shadows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.1);
+    /* Enhanced Shadows with Neon Glow */
+    --shadow-sm: 0 2px 8px rgba(0, 255, 255, 0.1);
+    --shadow-md: 0 8px 32px rgba(0, 255, 255, 0.15);
+    --shadow-lg: 0 16px 64px rgba(0, 255, 255, 0.2);
+    --shadow-xl: 0 24px 96px rgba(0, 255, 255, 0.25);
+    --shadow-neon: 0 0 20px rgba(0, 255, 255, 0.5);
     
-    /* Apple's Smooth Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Smooth Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-spring: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   
   .dark {
-    --background: 0 0 0;
+    --background: 8 8 12;
     --foreground: 255 255 255;
-    --card: 28 28 30;
+    --card: 16 16 24;
     --card-foreground: 255 255 255;
-    --popover: 28 28 30;
+    --popover: 20 20 32;
     --popover-foreground: 255 255 255;
-    --primary: 0 122 255;
-    --primary-foreground: 255 255 255;
-    --secondary: 28 28 30;
+    --primary: 0 255 255;
+    --primary-foreground: 8 8 12;
+    --secondary: 32 32 48;
     --secondary-foreground: 255 255 255;
-    --muted: 28 28 30;
-    --muted-foreground: 142 142 147;
-    --accent: 28 28 30;
+    --muted: 24 24 36;
+    --muted-foreground: 156 163 175;
+    --accent: 138 43 226;
     --accent-foreground: 255 255 255;
-    --border: 44 44 46;
-    --input: 28 28 30;
-    --ring: 0 122 255;
+    --border: 64 64 96;
+    --input: 24 24 36;
+    --ring: 0 255 255;
   }
 }
 
@@ -104,146 +106,325 @@
   
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #08080C 0%, #101018 50%, #181824 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
   }
   
-  /* Apple's Typography */
+  /* Futuristic Typography */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    letter-spacing: -0.025em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: rgb(var(--foreground));
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   }
   
-  /* Apple's Smooth Scrolling */
+  /* Smooth Scrolling */
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(16, 16, 24, 0.5);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00FFFF, #8A2BE2);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00FFFF, #FF00FF);
   }
 }
 
 @layer components {
-  /* Apple's Card Design */
-  .apple-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300;
+  /* Glassmorphic Card Design */
+  .glass-card {
+    @apply bg-card/20 backdrop-blur-xl border border-border/30 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
   }
   
-  /* Apple's Button Design */
-  .apple-button {
-    @apply bg-primary text-primary-foreground rounded-2xl px-6 py-3 font-medium transition-all duration-300 hover:scale-105 active:scale-95;
-    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+  .glass-card:hover {
+    box-shadow: 0 16px 64px rgba(0, 255, 255, 0.2);
+    transform: translateY(-4px);
   }
   
-  .apple-button-secondary {
-    @apply bg-secondary text-secondary-foreground rounded-2xl px-6 py-3 font-medium transition-all duration-300 hover:bg-accent active:scale-95;
+  /* Neon Button Design */
+  .neon-button {
+    @apply bg-primary text-primary-foreground rounded-2xl px-8 py-4 font-bold transition-all duration-500 hover:scale-105 active:scale-95;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
   }
   
-  /* Apple's Transaction Pills */
+  .neon-button:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+  }
+  
+  .neon-button-secondary {
+    @apply bg-secondary text-secondary-foreground rounded-2xl px-8 py-4 font-bold transition-all duration-500 hover:bg-accent hover:text-accent-foreground active:scale-95;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+  }
+  
+  .neon-button-secondary:hover {
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
+  }
+  
+  /* Floating Transaction Pills */
   .transaction-pill {
-    @apply px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105;
+    @apply px-6 py-3 rounded-full text-sm font-bold backdrop-blur-sm border transition-all duration-500 hover:scale-110;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.2);
+  }
+  
+  .income-pill {
+    @apply bg-success/30 text-success border-success/50;
+    box-shadow: 0 4px 16px rgba(52, 199, 89, 0.3);
+  }
+  
+  .income-pill:hover {
+    box-shadow: 0 8px 32px rgba(52, 199, 89, 0.5);
+  }
+  
+  .expense-pill {
+    @apply bg-destructive/30 text-destructive border-destructive/50;
+    box-shadow: 0 4px 16px rgba(255, 69, 58, 0.3);
+  }
+  
+  .expense-pill:hover {
+    box-shadow: 0 8px 32px rgba(255, 69, 58, 0.5);
+  }
+  
+  /* Floating Category Items */
+  .category-item {
+    @apply flex items-center justify-between p-6 rounded-2xl hover:bg-muted/50 transition-all duration-500 cursor-pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.1);
+  }
+  
+  .category-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+  }
+  
+  /* Holographic Calendar Day */
+  .calendar-day {
+    @apply min-h-[120px] p-4 border border-border/40 rounded-2xl transition-all duration-500 hover:border-primary/60;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(145deg, rgba(16, 16, 24, 0.6), rgba(32, 32, 48, 0.4));
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.1);
+  }
+  
+  .calendar-day:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+  }
+  
+  .calendar-day.today {
+    @apply bg-primary/20 border-primary/60;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+  
+  /* Floating Action Button */
+  .floating-fab {
+    @apply fixed bottom-8 right-8 w-16 h-16 bg-primary text-primary-foreground rounded-full shadow-2xl transition-all duration-500 hover:scale-110 active:scale-95 flex items-center justify-center;
+    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
   
-  .income-pill {
-    @apply bg-success/10 text-success border-success/20;
+  .floating-fab:hover {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
   }
   
-  .expense-pill {
-    @apply bg-destructive/10 text-destructive border-destructive/20;
-  }
-  
-  /* Apple's Category Items */
-  .category-item {
-    @apply flex items-center justify-between p-4 rounded-2xl hover:bg-muted/50 transition-all duration-300 cursor-pointer;
-  }
-  
-  /* Apple's Calendar Day */
-  .calendar-day {
-    @apply min-h-[120px] p-3 border border-border/30 rounded-2xl hover:border-border transition-all duration-300 hover:bg-card/50;
-  }
-  
-  .calendar-day.today {
-    @apply bg-primary/5 border-primary/20;
-  }
-  
-  /* Apple's Floating Action Button */
-  .apple-fab {
-    @apply fixed bottom-6 right-6 w-16 h-16 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center;
-    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
-  }
-  
-  /* Apple's Sidebar Design */
-  .apple-sidebar {
-    @apply bg-secondary border-r border-border backdrop-blur-xl;
+  /* Glassmorphic Sidebar */
+  .glass-sidebar {
+    @apply bg-secondary/30 border-r border-border/40 backdrop-blur-xl;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    box-shadow: 4px 0 32px rgba(0, 255, 255, 0.1);
   }
   
-  /* Apple's Form Inputs */
-  .apple-input {
-    @apply bg-input border border-border rounded-2xl px-4 py-3 transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary;
+  /* Futuristic Form Inputs */
+  .futuristic-input {
+    @apply bg-input border border-border/60 rounded-2xl px-6 py-4 transition-all duration-500 focus:ring-2 focus:ring-primary/40 focus:border-primary;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.1);
   }
   
-  /* Apple's Animations */
-  .fade-in {
-    animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .futuristic-input:focus {
+    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.3);
   }
   
-  .slide-up {
-    animation: slideUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Animated Background Elements */
+  .animated-bg {
+    position: relative;
+    overflow: hidden;
   }
   
-  .scale-in {
-    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  .animated-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+    animation: shimmer 8s linear infinite;
+    z-index: -1;
   }
   
-  @keyframes fadeIn {
+  @keyframes shimmer {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Floating Animations */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+  
+  .float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Neon Glow Effects */
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  
+  .neon-glow:hover {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+  }
+  
+  /* Glassmorphic Animations */
+  .fade-in-glass {
+    animation: fadeInGlass 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .slide-up-glass {
+    animation: slideUpGlass 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .scale-in-glass {
+    animation: scaleInGlass 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  @keyframes fadeInGlass {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
+      backdrop-filter: blur(0px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+      backdrop-filter: blur(20px);
     }
   }
   
-  @keyframes slideUp {
+  @keyframes slideUpGlass {
     from {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(60px);
+      backdrop-filter: blur(0px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+      backdrop-filter: blur(20px);
     }
   }
   
-  @keyframes scaleIn {
+  @keyframes scaleInGlass {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.8);
+      backdrop-filter: blur(0px);
     }
     to {
       opacity: 1;
       transform: scale(1);
+      backdrop-filter: blur(20px);
     }
   }
   
-  /* Apple's Glass Effect */
-  .apple-glass {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Enhanced Status Badges */
+  .status-badge {
+    @apply px-4 py-2 rounded-full text-sm font-bold;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   
-  .apple-glass-dark {
-    background: rgba(28, 28, 30, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .status-success {
+    @apply bg-success/30 text-success border border-success/50;
+    box-shadow: 0 4px 16px rgba(52, 199, 89, 0.3);
+  }
+  
+  .status-warning {
+    @apply bg-warning/30 text-warning border border-warning/50;
+    box-shadow: 0 4px 16px rgba(255, 149, 0, 0.3);
+  }
+  
+  .status-destructive {
+    @apply bg-destructive/30 text-destructive border border-destructive/50;
+    box-shadow: 0 4px 16px rgba(255, 69, 58, 0.3);
+  }
+  
+  .status-primary {
+    @apply bg-primary/30 text-primary border border-primary/50;
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.3);
+  }
+  
+  /* Particle Background Effect */
+  .particle-bg {
+    position: relative;
+  }
+  
+  .particle-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
   }
 }

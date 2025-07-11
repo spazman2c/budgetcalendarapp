@@ -83,9 +83,9 @@ export const AccountSelector = () => {
   };
 
   return (
-    <div className="space-y-6 fade-in">
-      {/* Apple-style Account Selector */}
-      <div className="flex items-center space-x-3">
+    <div className="space-y-4 fade-in">
+      {/* Apple-style Account Selector - Reduced sizing */}
+      <div className="flex items-center space-x-2">
         <Select value={state.selectedAccount || ""} onValueChange={handleAccountChange}>
           <SelectTrigger className="apple-input w-full">
             <SelectValue placeholder="Select account" />
@@ -96,8 +96,8 @@ export const AccountSelector = () => {
               return (
                 <SelectItem key={account.id} value={account.id}>
                   <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center space-x-3">
-                      <Icon className="w-5 h-5" style={{ color: account.color }} />
+                    <div className="flex items-center space-x-2">
+                      <Icon className="w-4 h-4" style={{ color: account.color }} />
                       <span className="font-medium">{account.name}</span>
                     </div>
                     <span className="text-muted-foreground">
@@ -112,17 +112,17 @@ export const AccountSelector = () => {
 
         <Dialog open={showAddAccount} onOpenChange={setShowAddAccount}>
           <DialogTrigger asChild>
-            <Button className="apple-button-secondary p-3">
-              <Plus className="w-5 h-5" />
+            <Button className="apple-button-secondary p-2.5">
+              <Plus className="w-4 h-4" />
             </Button>
           </DialogTrigger>
           <DialogContent className="apple-card">
             <DialogHeader>
-              <DialogTitle className="text-xl font-semibold">Add New Account</DialogTitle>
+              <DialogTitle className="text-lg font-semibold">Add New Account</DialogTitle>
             </DialogHeader>
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <Label htmlFor="name" className="text-base font-medium">Account Name</Label>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-medium">Account Name</Label>
                 <Input
                   id="name"
                   placeholder="e.g., Main Checking"
@@ -132,8 +132,8 @@ export const AccountSelector = () => {
                 />
               </div>
 
-              <div className="space-y-3">
-                <Label htmlFor="type" className="text-base font-medium">Account Type</Label>
+              <div className="space-y-2">
+                <Label htmlFor="type" className="text-sm font-medium">Account Type</Label>
                 <Select
                   value={newAccount.type}
                   onValueChange={(value: any) => setNewAccount({ ...newAccount, type: value })}
@@ -151,8 +151,8 @@ export const AccountSelector = () => {
                 </Select>
               </div>
 
-              <div className="space-y-3">
-                <Label htmlFor="balance" className="text-base font-medium">Current Balance</Label>
+              <div className="space-y-2">
+                <Label htmlFor="balance" className="text-sm font-medium">Current Balance</Label>
                 <Input
                   id="balance"
                   type="number"
@@ -164,8 +164,8 @@ export const AccountSelector = () => {
                 />
               </div>
 
-              <div className="space-y-3">
-                <Label htmlFor="currency" className="text-base font-medium">Currency</Label>
+              <div className="space-y-2">
+                <Label htmlFor="currency" className="text-sm font-medium">Currency</Label>
                 <Select
                   value={newAccount.currency}
                   onValueChange={(value) => setNewAccount({ ...newAccount, currency: value })}
@@ -190,18 +190,18 @@ export const AccountSelector = () => {
         </Dialog>
       </div>
 
-      {/* Apple-style Account Summary */}
+      {/* Apple-style Account Summary - Reduced sizing */}
       {state.accounts.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="apple-card p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="apple-card p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
-                  <Wallet className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                  <Wallet className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-muted-foreground">Total Balance</span>
-                  <p className="text-2xl font-semibold text-foreground">
+                  <span className="text-xs font-medium text-muted-foreground">Total Balance</span>
+                  <p className="text-lg font-semibold text-foreground">
                     {formatCurrency(getTotalBalance())}
                   </p>
                 </div>
@@ -209,15 +209,15 @@ export const AccountSelector = () => {
             </div>
           </div>
 
-          <div className="apple-card p-6">
+          <div className="apple-card p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-warning/10 rounded-2xl flex items-center justify-center">
-                  <CreditCard className="w-6 h-6 text-warning" />
+                <div className="w-10 h-10 bg-info/20 rounded-xl flex items-center justify-center">
+                  <CreditCard className="w-5 h-5 text-info" />
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-muted-foreground">Active Accounts</span>
-                  <p className="text-2xl font-semibold text-foreground">
+                  <span className="text-xs font-medium text-muted-foreground">Active Accounts</span>
+                  <p className="text-lg font-semibold text-foreground">
                     {state.accounts.filter(a => a.isActive).length}
                   </p>
                 </div>
@@ -227,35 +227,35 @@ export const AccountSelector = () => {
         </div>
       )}
 
-      {/* Apple-style Account List */}
-      <div className="space-y-3">
+      {/* Apple-style Account List - Reduced sizing */}
+      <div className="space-y-2">
         {state.accounts.map((account) => {
           const Icon = accountTypeIcons[account.type];
           return (
             <div
               key={account.id}
-              className="apple-card p-4 transition-all duration-300 hover:scale-105"
+              className="apple-card p-3 transition-all duration-300 hover:scale-105"
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ backgroundColor: `${account.color}20` }}>
-                    <Icon className="w-6 h-6" style={{ color: account.color }} />
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${account.color}20` }}>
+                    <Icon className="w-5 h-5" style={{ color: account.color }} />
                   </div>
                   <div>
-                    <p className="text-base font-semibold text-foreground">{account.name}</p>
-                    <p className="text-sm text-muted-foreground capitalize">{account.type}</p>
+                    <p className="text-sm font-semibold text-foreground">{account.name}</p>
+                    <p className="text-xs text-muted-foreground capitalize">{account.type}</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-3">
-                  <span className="text-lg font-bold text-foreground">
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm font-bold text-foreground">
                     {formatCurrency(account.balance)}
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => deleteAccount(account.id)}
-                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 rounded-2xl"
+                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 rounded-lg text-xs px-2 py-1"
                   >
                     Delete
                   </Button>

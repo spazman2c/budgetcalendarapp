@@ -75,42 +75,42 @@ export const CategorySection = () => {
   const expenseCategories = categoryTotals.filter(cat => cat.type === 'expense');
 
   return (
-    <div className="space-y-6 fade-in">
-      {/* Apple-style Add Category Button */}
+    <div className="space-y-6 fade-in-glass">
+      {/* Glassmorphic Add Category Button */}
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold text-foreground tracking-tight">Categories</h3>
+        <h3 className="text-xl font-bold text-foreground tracking-tight">Categories</h3>
         <Dialog open={showAddCategory} onOpenChange={setShowAddCategory}>
           <DialogTrigger asChild>
-            <Button className="apple-button-secondary flex items-center space-x-2">
+            <Button className="neon-button-secondary flex items-center space-x-2 text-sm px-4 py-2">
               <Plus className="w-4 h-4" />
-              <span>Add Category</span>
+              <span>Add</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="apple-card">
+          <DialogContent className="glass-card">
             <DialogHeader>
-              <DialogTitle className="text-xl font-semibold">Add New Category</DialogTitle>
+              <DialogTitle className="text-xl font-bold">Add New Category</DialogTitle>
             </DialogHeader>
             <div className="space-y-6">
               <div className="space-y-3">
-                <Label htmlFor="name" className="text-base font-medium">Name</Label>
+                <Label htmlFor="name" className="text-base font-bold">Name</Label>
                 <Input
                   id="name"
                   placeholder="Category name"
                   value={newCategory.name}
                   onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
-                  className="apple-input"
+                  className="futuristic-input"
                 />
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="type" className="text-base font-medium">Type</Label>
+                <Label htmlFor="type" className="text-base font-bold">Type</Label>
                 <Select
                   value={newCategory.type}
                   onValueChange={(value: "income" | "expense") => 
                     setNewCategory({ ...newCategory, type: value })
                   }
                 >
-                  <SelectTrigger className="apple-input">
+                  <SelectTrigger className="futuristic-input">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -121,17 +121,17 @@ export const CategorySection = () => {
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="icon" className="text-base font-medium">Icon</Label>
+                <Label htmlFor="icon" className="text-base font-bold">Icon</Label>
                 <Input
                   id="icon"
                   placeholder="💰"
                   value={newCategory.icon}
                   onChange={(e) => setNewCategory({ ...newCategory, icon: e.target.value })}
-                  className="apple-input"
+                  className="futuristic-input"
                 />
               </div>
 
-              <Button onClick={handleAddCategory} className="apple-button w-full">
+              <Button onClick={handleAddCategory} className="neon-button w-full">
                 Add Category
               </Button>
             </div>
@@ -139,22 +139,22 @@ export const CategorySection = () => {
         </Dialog>
       </div>
 
-      {/* Apple-style Income Categories */}
+      {/* Glassmorphic Income Categories */}
       <div className="space-y-4">
-        <h4 className="text-base font-semibold text-muted-foreground">Income Categories</h4>
+        <h4 className="text-base font-bold text-muted-foreground">Income Categories</h4>
         <div className="space-y-3">
           {incomeCategories.map((category) => (
             <div
               key={category.id}
-              className="apple-card p-4 transition-all duration-300 hover:scale-105"
+              className="glass-card p-4 transition-all duration-500 hover:scale-105 float"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-success/10 rounded-2xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-success/30 rounded-2xl flex items-center justify-center neon-glow">
                     <span className="text-xl">{category.icon}</span>
                   </div>
                   <div>
-                    <p className="text-base font-semibold text-foreground">{category.name}</p>
+                    <p className="text-base font-bold text-foreground">{category.name}</p>
                     <p className="text-sm text-muted-foreground">
                       {category.transactionCount} transaction{category.transactionCount !== 1 ? 's' : ''}
                     </p>
@@ -162,14 +162,14 @@ export const CategorySection = () => {
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <span className="text-lg font-bold text-success">
+                  <span className="text-base font-bold text-success">
                     ${category.total.toLocaleString()}
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleDeleteCategory(category.id)}
-                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 rounded-2xl"
+                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/20 rounded-xl text-sm px-3 py-2"
                   >
                     Delete
                   </Button>
@@ -180,22 +180,22 @@ export const CategorySection = () => {
         </div>
       </div>
 
-      {/* Apple-style Expense Categories */}
+      {/* Glassmorphic Expense Categories */}
       <div className="space-y-4">
-        <h4 className="text-base font-semibold text-muted-foreground">Expense Categories</h4>
+        <h4 className="text-base font-bold text-muted-foreground">Expense Categories</h4>
         <div className="space-y-3">
           {expenseCategories.map((category) => (
             <div
               key={category.id}
-              className="apple-card p-4 transition-all duration-300 hover:scale-105"
+              className="glass-card p-4 transition-all duration-500 hover:scale-105 float-delayed"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-destructive/10 rounded-2xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-destructive/30 rounded-2xl flex items-center justify-center neon-glow">
                     <span className="text-xl">{category.icon}</span>
                   </div>
                   <div>
-                    <p className="text-base font-semibold text-foreground">{category.name}</p>
+                    <p className="text-base font-bold text-foreground">{category.name}</p>
                     <p className="text-sm text-muted-foreground">
                       {category.transactionCount} transaction{category.transactionCount !== 1 ? 's' : ''}
                     </p>
@@ -203,14 +203,14 @@ export const CategorySection = () => {
                 </div>
                 
                 <div className="flex items-center space-x-3">
-                  <span className="text-lg font-bold text-destructive">
+                  <span className="text-base font-bold text-destructive">
                     ${category.total.toLocaleString()}
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => handleDeleteCategory(category.id)}
-                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/10 rounded-2xl"
+                    className="text-destructive hover:text-destructive/80 hover:bg-destructive/20 rounded-xl text-sm px-3 py-2"
                   >
                     Delete
                   </Button>

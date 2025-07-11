@@ -25,63 +25,63 @@ export const AnalyticsSection = () => {
   }).filter(cat => cat.total > 0).sort((a, b) => b.total - a.total);
 
   return (
-    <div className="space-y-6">
-      {/* Summary Cards */}
-      <div className="space-y-3">
-        <div className="bg-card border border-border rounded-lg p-4 shadow-md">
+    <div className="space-y-4">
+      {/* Summary Cards - Reduced sizing */}
+      <div className="space-y-2">
+        <div className="apple-card p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-medium text-muted-foreground">Income</span>
+              <TrendingUp className="w-4 h-4 text-success" />
+              <span className="text-xs font-medium text-muted-foreground">Income</span>
             </div>
-            <span className="text-lg font-bold text-green-600">
+            <span className="text-sm font-bold text-success">
               {formatCurrency(currentMonthData.totalIncome)}
             </span>
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-lg p-4 shadow-md">
+        <div className="apple-card p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <TrendingDown className="w-5 h-5 text-red-600" />
-              <span className="text-sm font-medium text-muted-foreground">Expenses</span>
+              <TrendingDown className="w-4 h-4 text-destructive" />
+              <span className="text-xs font-medium text-muted-foreground">Expenses</span>
             </div>
-            <span className="text-lg font-bold text-red-600">
+            <span className="text-sm font-bold text-destructive">
               {formatCurrency(currentMonthData.totalExpense)}
             </span>
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-lg p-4 shadow-md">
+        <div className="apple-card p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <DollarSign className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">Net</span>
+              <DollarSign className="w-4 h-4 text-primary" />
+              <span className="text-xs font-medium text-muted-foreground">Net</span>
             </div>
-            <span className={`text-lg font-bold ${currentMonthData.netAmount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+            <span className={`text-sm font-bold ${currentMonthData.netAmount >= 0 ? 'text-success' : 'text-destructive'}`}>
               {formatCurrency(currentMonthData.netAmount)}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Category Breakdown */}
+      {/* Category Breakdown - Reduced sizing */}
       <div>
-        <h3 className="text-lg font-semibold text-foreground mb-3">Category Breakdown</h3>
-        <div className="space-y-2">
-          {categoryBreakdown.slice(0, 8).map((category) => (
-            <div key={category.id} className="flex items-center justify-between p-3 bg-card border border-border rounded-lg">
-              <div className="flex items-center space-x-3">
-                <span className="text-lg">{category.icon}</span>
+        <h3 className="text-sm font-semibold text-foreground mb-2">Category Breakdown</h3>
+        <div className="space-y-1">
+          {categoryBreakdown.slice(0, 6).map((category) => (
+            <div key={category.id} className="flex items-center justify-between p-2 apple-card">
+              <div className="flex items-center space-x-2">
+                <span className="text-base">{category.icon}</span>
                 <div>
-                  <p className="text-sm font-medium text-foreground">{category.name}</p>
+                  <p className="text-xs font-medium text-foreground">{category.name}</p>
                   <p className="text-xs text-muted-foreground">
                     {category.transactionCount} transaction{category.transactionCount !== 1 ? 's' : ''}
                   </p>
                 </div>
               </div>
-              <span className={`text-sm font-bold ${
-                category.type === 'income' ? 'text-green-600' : 'text-red-600'
+              <span className={`text-xs font-bold ${
+                category.type === 'income' ? 'text-success' : 'text-destructive'
               }`}>
                 {formatCurrency(category.total)}
               </span>
@@ -90,28 +90,28 @@ export const AnalyticsSection = () => {
         </div>
       </div>
 
-      {/* Recent Transactions */}
+      {/* Recent Transactions - Reduced sizing */}
       <div>
-        <h3 className="text-lg font-semibold text-foreground mb-3">Recent Transactions</h3>
-        <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-foreground mb-2">Recent Transactions</h3>
+        <div className="space-y-1">
           {state.transactions
             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            .slice(0, 5)
+            .slice(0, 4)
             .map((transaction) => {
               const category = state.categories.find(c => c.id === transaction.category);
               return (
-                <div key={transaction.id} className="flex items-center justify-between p-3 bg-card border border-border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-lg">{category?.icon || '💰'}</span>
+                <div key={transaction.id} className="flex items-center justify-between p-2 apple-card">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-base">{category?.icon || '💰'}</span>
                     <div>
-                      <p className="text-sm font-medium text-foreground">{category?.name || 'Unknown'}</p>
+                      <p className="text-xs font-medium text-foreground">{category?.name || 'Unknown'}</p>
                       <p className="text-xs text-muted-foreground">
                         {format(new Date(transaction.date), 'MMM dd')}
                       </p>
                     </div>
                   </div>
-                  <span className={`text-sm font-bold ${
-                    transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
+                  <span className={`text-xs font-bold ${
+                    transaction.type === 'income' ? 'text-success' : 'text-destructive'
                   }`}>
                     {formatCurrency(Math.abs(transaction.amount))}
                   </span>

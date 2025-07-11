@@ -11,26 +11,26 @@ const Index = () => {
   const { state } = useBudget();
 
   return (
-    <div className="min-h-screen bg-background fade-in">
+    <div className="min-h-screen animated-bg particle-bg fade-in-glass">
       <Header />
       
       <div className="flex h-[calc(100vh-4rem)]">
-        {/* Apple-style Sidebar */}
-        <div className="w-80 apple-sidebar">
+        {/* Glassmorphic Sidebar */}
+        <div className="w-80 glass-sidebar float">
           <Sidebar />
         </div>
 
-        {/* Apple-style Calendar */}
-        <div className="flex-1 p-8 slide-up">
+        {/* Glassmorphic Calendar */}
+        <div className="flex-1 p-8 slide-up-glass">
           <CalendarView 
             currentDate={currentDate}
             onDateChange={setCurrentDate}
           />
         </div>
 
-        {/* Apple-style Transaction Form */}
+        {/* Glassmorphic Transaction Form */}
         {showTransactionForm && (
-          <div className="w-80 border-l border-border bg-card/80 backdrop-blur-xl scale-in">
+          <div className="w-80 border-l border-border/40 glass-card scale-in-glass">
             <TransactionForm 
               onClose={() => setShowTransactionForm(false)}
               selectedDate={state.selectedDate}
@@ -39,12 +39,12 @@ const Index = () => {
         )}
       </div>
 
-      {/* Apple-style Floating Add Button */}
+      {/* Floating Action Button */}
       <button
         onClick={() => setShowTransactionForm(true)}
-        className="apple-fab"
+        className="floating-fab neon-glow"
       >
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
         </svg>
       </button>

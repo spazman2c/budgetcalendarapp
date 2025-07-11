@@ -20,14 +20,14 @@ export const CalendarView = ({ currentDate, onDateChange }: CalendarViewProps) =
   const monthData = getMonthData(currentDate.getFullYear(), currentDate.getMonth());
 
   return (
-    <div className="h-full flex flex-col fade-in">
+    <div className="h-full flex flex-col fade-in-glass">
       <CalendarHeader 
         currentDate={currentDate}
         onDateChange={onDateChange}
         monthData={monthData}
       />
       
-      <div className="flex-1 mt-8 slide-up">
+      <div className="flex-1 mt-8 slide-up-glass">
         <CalendarGrid
           calendarDays={calendarDays}
           currentDate={currentDate}
